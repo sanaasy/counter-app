@@ -6,8 +6,10 @@ export default function App() {
   const [zero, setZero] = useState(true);
 
   const decreaseCount = () => {
-    if(count - 1 == 0){
-      setZero(true);
+    if(count <= 0){
+      setZero(true)
+      alert("Count is already at 0.")
+      return
     }
 
     setCount(count - 1);
@@ -16,18 +18,20 @@ export default function App() {
   const increaseCount = () => {
     setCount(count + 1);
 
-    setZero(false);
+    setZero(false)
   }
 
   return (
     <View style={styles.container}>
+      <Text>COUNTER APP</Text>
       <Text style={styles.count}> { count } </Text>
       <View style={styles.rowButtons}>
         <TouchableOpacity onPress={decreaseCount} style={styles.button} disabled={zero}>
-          <Text> - </Text>
+          <Text style={styles.buttonText}> Decrease </Text>
         </TouchableOpacity>
+        <View style={styles.space} />
         <TouchableOpacity onPress={increaseCount} style={styles.button}>
-          <Text> + </Text>
+          <Text style={styles.buttonText}> Increase </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -42,15 +46,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   count: {
-    padding: 10
+    padding: 10,
+    fontSize: 100
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
+    backgroundColor: "#BBBDF6",
+    padding: 20, 
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 20
   },
   rowButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
   },
+  space: {
+    width: 50,
+  }
 });
